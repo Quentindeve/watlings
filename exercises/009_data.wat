@@ -18,10 +18,17 @@
 
   (data (i32.const 0) "Hello, World!\n") ;; inline 14 bytes at offset 0
   (data (i32.const 20) "Woah, radical!\n") ;; inline 15 bytes at offset 20
+  (data (i32.const 36) "Menfou + Palu + Ratio\n") ;;inline 22 bytes at offset 36
 
   ;; TODO: export a function $log_data that logs 3 different strings
   ;; It should make calls to $log_string
+  (func $log_data
+    (call $log_string (i32.const 0) (i32.const 14))
+    (call $log_string (i32.const 20) (i32.const 15))
+    (call $log_string (i32.const 36) (i32.const 22))
 
+  
+  )
   (export "logData" (func $log_data))
   (export "mem" (memory 0))
 )

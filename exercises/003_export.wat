@@ -20,5 +20,6 @@
   )
 
   ;; TODO: replace this with an export
-  (start $main)
+  ;; (start $main)
+  (export "main" (func $main))
 )

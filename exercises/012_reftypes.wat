@@ -1,14 +1,14 @@
 (;
   In addition to the 4 number types, we also have 2 "ref" types: 
-    - externref: any reference or null
-    - funcref: a reference to a function or null
+	- externref: any reference or null
+	- funcref: a reference to a function or null
 
   We can't view or modify the underlying values, but we can pass them around!
 
   This brings us to 3 new operations:
-    - (ref.func $func_id): make a reference from a local function (only valid if function is in a table)
-    - (ref.null extern/func): make a null reference for an extern or func
-    - (ref.is_null $id): check if reference is currently null
+	- (ref.func $func_id): make a reference from a local function (only valid if function is in a table)
+	- (ref.null extern/func): make a null reference for an extern or func
+	- (ref.is_null $id): check if reference is currently null
   
   NOTE: You may come across "anyfunc" or "anyref" in the future. These are deprecated - ignore them. 
 
@@ -26,7 +26,9 @@
   (global $global_func_ref funcref (ref.func $send_func_ref))
 
   (func $main
-    ;; TODO: call $send_func_ref and $send_func_ref with correct params
+	;; TODO: call $send_func_ref and $send_func_ref with correct params
+	(call $send_func_ref (ref.func $send_func_ref))
+	(call $send_extern_ref (global.get $global_extern_ref))
   )
 
   (export "main" (func $main))

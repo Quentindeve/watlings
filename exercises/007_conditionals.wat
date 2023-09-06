@@ -59,6 +59,19 @@
   (func (export "getNum") (param $num i32) (result i32)
     ;; TODO:
     ;; return 42 if even, 100 if odd
+    (local $ret i32)
+    (if
+      ;; if $num mod 2 != 0
+      (i32.rem_s (local.get $num) (i32.const 2))
+      (then
+        (local.set $ret (i32.const 100))
+      )
+      ;; if $num mod 2 == 0
+      (else
+        (local.set $ret (i32.const 42))
+      )
+    )
+    (local.get $ret)
   )
 
   (export "isEven" (func $is_even))

@@ -67,6 +67,28 @@
   )
 
   (func $count_even_until (param $end i32)
+    (local $counter i32)
+    (local.set $counter (i32.const 0))
+
+    ;; Note to myself: loop get executed one time at least while block doesn't get evaluated before any jump to it.
+    (loop $loop
+      (if
+        (i32.eq (i32.rem_s (local.get $counter) (i32.const 2)) (i32.const 0))
+        (then
+          (call $log_num (local.get $counter))
+        )
+      )
+      
+      (local.set $counter (i32.add (local.get $counter) (i32.const 1)))
+
+      (i32.ne (
+          local.get $counter
+          (local.get $end)
+          )
+      )
+      (br_if $loop)
+      ;; If the counter is equals to $end-1
+    )
     ;; TODO: call $log_num for every even number starting at 0.
     ;; Log until $end exclusive (do not log $end)
   )

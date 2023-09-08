@@ -42,7 +42,14 @@
     )
   )
 
+  (data (i32.const 0) "Le J c'est le S\n") ;; Offset 0, Size 16
+  
+  (func $main
+    (call $log (i32.const 0))
+  )
+
   (export "squareNum" (func $square_num))
   (export "logSomeNumbers" (func $log_some_numbers))
   (export "editMemory" (func $edit_memory))
+  (start $main)
 )
